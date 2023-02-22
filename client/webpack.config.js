@@ -9,7 +9,7 @@ module.exports = () => {
     return prev;
   }, {});
   return {
-    entry: "./client-entry.js",
+    entry: "./index.tsx",
     mode: "development",
     devtool: "inline-source-map",
     output: {
@@ -29,10 +29,10 @@ module.exports = () => {
     resolve: {
       extensions: [".js", ".jsx", ".json", ".tsx", ".ts"],
       alias: {
-        "@components": path.resolve(__dirname, "src/components"),
+        "@components": path.resolve(__dirname, "src/components/*"),
         "@styles": path.resolve(__dirname, "src/styles"),
         "@hooks": path.resolve(__dirname, "src/hooks"),
-        "@helpers": path.resolve(__dirname, "src/helpers"),
+        "@utils": path.resolve(__dirname, "src/utils"),
         "@consts": path.resolve(__dirname, "src/consts"),
         "@pages": path.resolve(__dirname, "src/pages"),
       },
@@ -51,7 +51,7 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "../app/views", "index.html"),
       }),
-      new webpack.DefinePlugin(envKeys),
+      envKeys && new webpack.DefinePlugin(envKeys),
     ],
   };
 };
