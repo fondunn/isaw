@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IContext, IContextChildrenProps } from "../types/AuthContext";
 
-// import { IContext, IContextChildrenProps } from "../interfaces/provider";
 import { getCookie } from "../utils/getCookie";
 
 interface IAuthorize {

@@ -56,5 +56,9 @@ export const Links = {
       title: 'Profile',
       path: '/profile'
     },
+    {
+      title: 'Settings',
+      path: '/settings'
+    },
   ],
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import ContentLayout from '../../components/layout/ContentLayout/ContentLayout'
-import ButtonCustom from '../../components/ui/ButtonCustom/ButtonCutsom'
 import { AuthContext } from '../../context/AuthContext';
 import {
   getAuth,
@@ -18,9 +17,14 @@ const Profile = () => {
   const auth = getAuth(APP);
   const navigate = useNavigate()
   const [isOpenModal, setIsOpenModal] = React.useState(false)
-  const madalHandler = (state: boolean) => {
-    setIsOpenModal(state)
+
+  const openModalHandler = () => {
+    setIsOpenModal(true)    
   }
+  const closeModalHandler = () => {
+    setIsOpenModal(false)    
+  }
+  
   const logoutHandler = async() => {
     logout();
     generateCookies(resetCookies);
@@ -28,13 +32,14 @@ const Profile = () => {
     navigateTo(navigate, '/')
   }
   return (
-    <ContentLayout>
-      <ButtonCustom label='Logout' onPress={() => madalHandler(true)} />
+    <ContentLayout label='Profile'>
+      <Button onPress={openModalHandler} >Logout</Button>
       <Modal 
       closeButton
       aria-labelledby="modal-title"
       open={isOpenModal}
-      onClose={() => madalHandler(false)}
+      onClose={closeModalHandler}
+      autoMargin
       >
         <Modal.Header>
           <Text id="modal-title" size={18}>
@@ -43,11 +48,13 @@ const Profile = () => {
         </Modal.Header>
         <Modal.Footer>
         <Grid.Container>
-          <Grid xs={6}>
-            <Button light color='error' onPress={() => madalHandler(false)}>Cancel</Button>
+          <Grid sm={6} xs={12} justify='center'>
+            <Button 
+             color='error' light auto onPress={closeModalHandler}>Cancel</Button>
           </Grid>
-          <Grid xs={6}>
-            <Button light color='success' onPress={() => logoutHandler()}>Logout</Button>
+          <Grid sm={6} xs={12} justify='center' >
+            <Button 
+             color='success' auto light onPress={logoutHandler}>Logout</Button>
           </Grid>
         </Grid.Container>
         </Modal.Footer>

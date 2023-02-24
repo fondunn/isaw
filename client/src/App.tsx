@@ -6,18 +6,18 @@ import { BrowserRouter } from "react-router-dom";
 import { createTheme, NextUIProvider } from "@nextui-org/react";
 import NavbarContainer from "./components/ui/NavbarContainer/NavbarContainer";
 import BodyLayout from "./components/layout/BodyLayout/BodyLayout";
+import SettingsProvider from "./context/SettingsContext";
+import AppContainer from "./components/ui/AppContainer/AppContainer";
 const App = () => {
   const darkTheme = createTheme({ type: "dark" });
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <NextUIProvider theme={darkTheme}>
-          <NavbarContainer />
-          <BodyLayout>
-          <Router />
-          </BodyLayout>
-        </NextUIProvider>
-      </BrowserRouter>
+      <SettingsProvider>
+        <BrowserRouter>
+         
+          <AppContainer />
+        </BrowserRouter>
+      </SettingsProvider>
     </AuthProvider>
   )
 };

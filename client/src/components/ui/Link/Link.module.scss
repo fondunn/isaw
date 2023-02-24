@@ -1,0 +1,15 @@
+.linkWrapper, .linkWrapperActive {
+  position: relative;
+}
+.linkWrapperActive {
+  a {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      width: 100%;
+      height: 3px;
+      box-shadow: 0px 2px 2px orange;
+    }
+  }
+}

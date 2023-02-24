@@ -1,26 +1,13 @@
+import ContentLayout from '@/components/layout/ContentLayout/ContentLayout'
+import ChoiceController from '@/components/ui/ChoiceController/ChoiceController'
 import React from 'react'
-import MovieCard from '../../components/ui/MovieCard/MovieCard'
 
 const Features = () => {
+  const [label, setLabel] = React.useState('Features')
   return (
-    <div style={{display: 'flex', flexDirection: 'column'}}>
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-    </div>
+  <ContentLayout label={label}>
+    <ChoiceController />
+  </ContentLayout>
   )
 }
 

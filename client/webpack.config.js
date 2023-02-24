@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 const dotenv = require("dotenv");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 module.exports = () => {
   const env = dotenv.config().parsed;
   const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -29,12 +30,15 @@ module.exports = () => {
     resolve: {
       extensions: [".js", ".jsx", ".json", ".tsx", ".ts"],
       alias: {
-        "@components": path.resolve(__dirname, "src/components/*"),
-        "@styles": path.resolve(__dirname, "src/styles"),
-        "@hooks": path.resolve(__dirname, "src/hooks"),
-        "@utils": path.resolve(__dirname, "src/utils"),
-        "@consts": path.resolve(__dirname, "src/consts"),
-        "@pages": path.resolve(__dirname, "src/pages"),
+        "@/components": path.resolve(__dirname, "src/components"),
+        "@/styles": path.resolve(__dirname, "src/styles"),
+        "@/utils": path.resolve(__dirname, "src/utils"),
+        "@/consts": path.resolve(__dirname, "src/consts"),
+        "@/pages": path.resolve(__dirname, "src/pages"),
+        "@/hooks": path.resolve(__dirname, "src/hooks"),
+        "@/context": path.resolve(__dirname, "src/context"),
+        "@/firebase": path.resolve(__dirname, "src/firebase"),
+        "@/Routes": path.resolve(__dirname, "src/Routes"),
       },
     },
     module: {
@@ -50,6 +54,9 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "../app/views", "index.html"),
+      }),
+      new TsconfigPathsPlugin({
+        extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
       }),
       envKeys && new webpack.DefinePlugin(envKeys),
     ],

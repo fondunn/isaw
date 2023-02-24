@@ -1,28 +1,24 @@
 import React from 'react'
-import { Button, Loading } from '@nextui-org/react'
+import { Button, Loading, PressEvent } from '@nextui-org/react'
 
 interface IButton {
   label: string
-  onPress?: Function
+  onPress?: (e: PressEvent) => void
   auto?: boolean
   css? : {}
-  loading? : boolean
+  loading? : boolean,
+  bordered? : boolean
 }
 
-const ButtonCustom = ({label, onPress, auto = false, css, loading}: IButton) => {
-  const onPressHandler = () => {
-    if (onPress) {
-      onPress()
-    }
-  }
+const ButtonCustom = ({label, onPress, auto = false, css, loading, bordered = true}: IButton) => {
   return (
     <Button 
       auto={auto} 
       shadow 
       color="gradient" 
-      bordered 
+      bordered={bordered}
       css={css} 
-      onPress={() => onPressHandler()}
+      onPress={(e) => onPress(e)}
       >
       {
         loading ?

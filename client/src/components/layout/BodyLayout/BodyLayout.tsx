@@ -4,7 +4,7 @@ import { IChildrenProps } from '../../../types/children'
 
 const BodyLayout = ({children} : IChildrenProps) => {
   return (
-    <Container>{children}</Container>
+    <Container css={{minHeight: 'calc(100vh - var(--nextui--navbarHeight))'}}>{children}</Container>
   )
 }
 
